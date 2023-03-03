@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../Utils/firebase/firebase.utils.js';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import Button from "../button/button.component.jsx";
+import { UserContext } from "../../contexts/user.context.jsx";
 
 import './sign-up-form.styles.scss';
 
@@ -15,9 +16,11 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
-const [formFields, setFormFields] = useState(defaultFormFields);
+    const [formFields, setFormFields] = useState(defaultFormFields);
 
-const { displayName, email, password, confirmPassword } = formFields;
+    const { displayName, email, password, confirmPassword } = formFields;
+
+    const { setCurrentUser } = useContext(UserContext);
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -28,6 +31,7 @@ const { displayName, email, password, confirmPassword } = formFields;
         if (password === confirmPassword) {
             try {
                 const { user } = await createAuthUserWithEmailAndPassword(email, password);
+                setCurrentUser(user);
                 await createUserDocumentFromAuth(user, { displayName });
                 resetFormFields();
             } catch (error) {
@@ -83,7 +87,7 @@ const { displayName, email, password, confirmPassword } = formFields;
                     type='password'
                     required
                     onChange={handleChange}
-                    name='password'
+                    name='confirmPassword'
                     value={confirmPassword}
                 />
 

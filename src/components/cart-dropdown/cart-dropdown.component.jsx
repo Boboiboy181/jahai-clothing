@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Button from '../button/button.component.jsx';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
 import CartItem from '../cart-item/cart-item.component.jsx';
 
 import './cart-dropdown.styles.scss';
@@ -19,7 +19,7 @@ const CartDropdown = () => {
             <div className='cart-items'>
                 {cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)}
             </div>
-            <Button onClick={handleCheckoutBtn}>checkout</Button>
+            <Button onClick={handleCheckoutBtn} buttonType={BUTTON_TYPE_CLASSES.base}>checkout</Button>
         </div>
     );
 };

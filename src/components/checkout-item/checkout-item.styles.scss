@@ -16,6 +16,7 @@
       height: 100%;
     }
   }
+
   .name,
   .quantity,
   .price {
@@ -27,6 +28,9 @@
 
     .arrow {
       cursor: pointer;
+      border: none;
+      background-color: white;
+      font-size: 1.2rem;
     }
 
     .value {
@@ -37,5 +41,8 @@
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+    border: none;
+    background-color: white;
+    font-size: 1.2rem;
   }
 }

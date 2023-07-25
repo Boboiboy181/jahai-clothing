@@ -18,12 +18,12 @@ const CheckoutItem = ({ cartItem }) => {
       </div>
       <span className='name'>{name}</span>
       <span className='quantity'>
-        <div className='arrow' onClick={decreaseItemHandler}>&#10094;</div>
+        <button className='arrow' onClick={decreaseItemHandler}>&#10094;</button>
         <span className='value'>{quantity}</span>
-        <div className='arrow' onClick={addItemHandler}>&#10095;</div>
+        <button className='arrow' onClick={addItemHandler}>&#10095;</button>
       </span>
       <span className='price'>{price}</span>
-      <div className='remove-button' onClick={deleteItemHandler}>&#10005;</div>
+      <button className='remove-button' onClick={deleteItemHandler}>&#10005;</button>
     </div>
   );
 };

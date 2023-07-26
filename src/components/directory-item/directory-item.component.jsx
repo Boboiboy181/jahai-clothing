@@ -1,4 +1,4 @@
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./directory-item.styles.jsx";
 import {
   BackgroundImage,

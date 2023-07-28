@@ -1,53 +1,53 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth
-} from '../../Utils/firebase/firebase.utils.js'
-import FormInput from '../form-input/form-input.component.jsx'
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx'
-import { SignUpContainer } from './sign-up-form.styles.jsx'
+} from '../../Utils/firebase/firebase.utils.js';
+import FormInput from '../form-input/form-input.component.jsx';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
+import { SignUpContainer } from './sign-up-form.styles.jsx';
 
 const defaultFormFields = {
   displayName: '',
   email: '',
   password: '',
   confirmPassword: ''
-}
+};
 
 const SignUpForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState(defaultFormFields);
 
-  const { displayName, email, password, confirmPassword } = formFields
+  const { displayName, email, password, confirmPassword } = formFields;
 
   const resetFormFields = () => {
-    setFormFields(defaultFormFields)
-  }
+    setFormFields(defaultFormFields);
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (password === confirmPassword) {
       try {
         const { user } = await createAuthUserWithEmailAndPassword(
           email,
           password
-        )
-        await createUserDocumentFromAuth(user, { displayName })
-        resetFormFields()
+        );
+        await createUserDocumentFromAuth(user, { displayName });
+        resetFormFields();
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-          alert('Cannot create user, email is already in use')
-        } else console.log(error)
+          alert('Cannot create user, email is already in use');
+        } else console.log(error);
       }
     } else {
-      alert('Your password does not match')
-      return
+      alert('Your password does not match');
+      return;
     }
-  }
+  };
 
   const handleChange = (event) => {
-    const { name, value } = event.target
-    setFormFields({ ...formFields, [name]: value })
-  }
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
 
   return (
     <SignUpContainer>
@@ -95,7 +95,7 @@ const SignUpForm = () => {
         </Button>
       </form>
     </SignUpContainer>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

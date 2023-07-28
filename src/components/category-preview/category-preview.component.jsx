@@ -1,9 +1,9 @@
-import ProductCard from '../product-card/product-card.component'
+import ProductCard from '../product-card/product-card.component';
 import {
   CategoryPreviewContainer,
   Preview,
   PreviewTitle
-} from './category-preview.styles'
+} from './category-preview.styles';
 
 const CategoryPreview = ({ title, products }) => {
   return (
@@ -19,7 +19,7 @@ const CategoryPreview = ({ title, products }) => {
           ))}
       </Preview>
     </CategoryPreviewContainer>
-  )
-}
+  );
+};
 
-export default CategoryPreview
+export default CategoryPreview;

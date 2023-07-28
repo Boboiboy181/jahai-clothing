@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/cart.context'
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart.context';
 import {
   Arrow,
   BaseSpan,
@@ -8,17 +8,17 @@ import {
   Quantity,
   RemoveButton,
   Value
-} from './checkout-item.styles.jsx'
+} from './checkout-item.styles.jsx';
 
 const CheckoutItem = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem
+  const { name, imageUrl, price, quantity } = cartItem;
 
   const { deleteItem, addItemToCart, decreaseItemQuantity } =
-    useContext(CartContext)
+    useContext(CartContext);
 
-  const addItemHandler = () => addItemToCart(cartItem)
-  const decreaseItemHandler = () => decreaseItemQuantity(cartItem)
-  const deleteItemHandler = () => deleteItem(cartItem)
+  const addItemHandler = () => addItemToCart(cartItem);
+  const decreaseItemHandler = () => decreaseItemQuantity(cartItem);
+  const deleteItemHandler = () => deleteItem(cartItem);
 
   return (
     <CheckoutItemContainer>
@@ -34,7 +34,7 @@ const CheckoutItem = ({ cartItem }) => {
       <BaseSpan>{price}</BaseSpan>
       <RemoveButton onClick={deleteItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
-  )
-}
+  );
+};
 
-export default CheckoutItem
+export default CheckoutItem;

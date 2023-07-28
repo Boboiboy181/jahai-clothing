@@ -1,15 +1,15 @@
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/cart.context.jsx'
-import CheckoutItem from '../../components/checkout-item/checkout-item.component.jsx'
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart.context.jsx';
+import CheckoutItem from '../../components/checkout-item/checkout-item.component.jsx';
 import {
   CheckoutContainer,
   CheckoutHeader,
   HeaderBlock,
   Total
-} from './checkout.styles.jsx'
+} from './checkout.styles.jsx';
 
 const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext)
+  const { cartItems, cartTotal } = useContext(CartContext);
 
   return (
     <CheckoutContainer>
@@ -31,11 +31,11 @@ const Checkout = () => {
         </HeaderBlock>
       </CheckoutHeader>
       {cartItems.map((cartItem) => {
-        return <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
       <Total>total: ${cartTotal}</Total>
     </CheckoutContainer>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;

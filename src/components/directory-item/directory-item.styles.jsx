@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-`;
+`
 
 export const Body = styled.div`
   height: 90px;
@@ -32,7 +32,7 @@ export const Body = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
-`;
+`
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
@@ -66,4 +66,4 @@ export const DirectoryItemContainer = styled.div`
       opacity: 0.95;
     }
   }
-`;
+`

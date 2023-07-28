@@ -1,53 +1,53 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   signInWithGooglePopUp,
-  signInAuthUserWithEmailAndPassword,
-} from "../../Utils/firebase/firebase.utils.js";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component.jsx";
-import FormInput from "../form-input/form-input.component.jsx";
-import { ButtonContainer, SignInContainer } from "./sign-in-form.styles.jsx";
+  signInAuthUserWithEmailAndPassword
+} from '../../Utils/firebase/firebase.utils.js'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx'
+import FormInput from '../form-input/form-input.component.jsx'
+import { ButtonContainer, SignInContainer } from './sign-in-form.styles.jsx'
 
 const defaultFormFields = {
-  email: "",
-  password: "",
-};
+  email: '',
+  password: ''
+}
 
 const SignInForm = () => {
   const signInWithGoogle = async () => {
-    await signInWithGooglePopUp();
-  };
+    await signInWithGooglePopUp()
+  }
 
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState(defaultFormFields)
 
-  const { email, password } = formFields;
+  const { email, password } = formFields
 
   const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
+    setFormFields(defaultFormFields)
+  }
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+    const { name, value } = event.target
+    setFormFields({ ...formFields, [name]: value })
+  }
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
-      resetFormFields();
+      await signInAuthUserWithEmailAndPassword(email, password)
+      resetFormFields()
     } catch (error) {
       switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect password for email");
-          break;
-        case "auth/user-not-found":
-          alert("No user associated with this email");
-          break;
+        case 'auth/wrong-password':
+          alert('Incorrect password for email')
+          break
+        case 'auth/user-not-found':
+          alert('No user associated with this email')
+          break
         default:
-          console.log(error);
+          console.log(error)
       }
     }
-  };
+  }
 
   return (
     <SignInContainer>
@@ -84,7 +84,7 @@ const SignInForm = () => {
         </ButtonContainer>
       </form>
     </SignInContainer>
-  );
-};
+  )
+}
 
-export default SignInForm;
+export default SignInForm

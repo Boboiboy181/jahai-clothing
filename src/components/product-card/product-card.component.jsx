@@ -1,18 +1,18 @@
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/cart.context'
 import {
   Name,
   Price,
   ProductCartContainer,
-  ProductCartFooter,
-} from "./product-card.styles";
+  ProductCartFooter
+} from './product-card.styles'
 
 const ProductCard = ({ product }) => {
-  const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
+  const { name, price, imageUrl } = product
+  const { addItemToCart } = useContext(CartContext)
 
-  const addProductToCart = () => addItemToCart(product);
+  const addProductToCart = () => addItemToCart(product)
 
   return (
     <ProductCartContainer>
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
         Add to cart
       </Button>
     </ProductCartContainer>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

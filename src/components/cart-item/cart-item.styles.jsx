@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const CartItemContainer = styled.div`
   width: 100%;
@@ -9,7 +9,7 @@ export const CartItemContainer = styled.div`
   img {
     width: 30%;
   }
-`;
+`
 
 export const ItemDetails = styled.div`
   width: 70%;
@@ -22,4 +22,4 @@ export const ItemDetails = styled.div`
   span {
     font-size: 16px;
   }
-`;
+`

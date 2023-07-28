@@ -1,7 +1,7 @@
-import { CartItemContainer, ItemDetails } from "./cart-item.styles";
+import { CartItemContainer, ItemDetails } from './cart-item.styles'
 
 const CartItem = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { name, imageUrl, price, quantity } = cartItem
 
   return (
     <CartItemContainer>
@@ -13,7 +13,7 @@ const CartItem = ({ cartItem }) => {
         </span>
       </ItemDetails>
     </CartItemContainer>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

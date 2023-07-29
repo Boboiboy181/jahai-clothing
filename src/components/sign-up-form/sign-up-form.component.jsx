@@ -6,6 +6,7 @@ import {
 import FormInput from '../form-input/form-input.component.jsx';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
 import { SignUpContainer } from './sign-up-form.styles.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   displayName: '',
@@ -15,6 +16,8 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { displayName, email, password, confirmPassword } = formFields;
@@ -32,6 +35,7 @@ const SignUpForm = () => {
           password
         );
         await createUserDocumentFromAuth(user, { displayName });
+        navigate('/');
         resetFormFields();
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {

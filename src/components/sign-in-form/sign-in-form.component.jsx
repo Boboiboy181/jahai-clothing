@@ -6,6 +6,7 @@ import {
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
 import FormInput from '../form-input/form-input.component.jsx';
 import { ButtonContainer, SignInContainer } from './sign-in-form.styles.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   email: '',
@@ -13,8 +14,11 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+
   const signInWithGoogle = async () => {
     await signInWithGooglePopUp();
+    navigate('/');
   };
 
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -34,6 +38,7 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
+      navigate('/');
       resetFormFields();
     } catch (error) {
       switch (error.code) {

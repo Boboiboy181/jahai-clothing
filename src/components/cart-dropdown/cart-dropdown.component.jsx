@@ -16,7 +16,7 @@ import { useEffect, useRef } from 'react';
 const CartDropdown = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const dropdownRef = useRef();
+  let dropdownRef = useRef();
 
   const cartItems = useSelector(selectCartItems);
 

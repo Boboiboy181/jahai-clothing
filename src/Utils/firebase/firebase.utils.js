@@ -98,7 +98,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -113,4 +113,17 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const onAuthStateChangedListener = (callBack) => {
   onAuthStateChanged(auth, callBack);
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubcribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubcribe();
+        resolve(userAuth);
+      },
+      reject,
+    );
+  });
 };

@@ -11,7 +11,7 @@ import {
   LogoContainer,
   NavigationContainer,
   NavLink,
-  NavLinks
+  NavLinks,
 } from './navigation.styles';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector';

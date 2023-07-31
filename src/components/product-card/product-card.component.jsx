@@ -4,7 +4,7 @@ import {
   Name,
   Price,
   ProductCartContainer,
-  ProductCartFooter
+  ProductCartFooter,
 } from './product-card.styles';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { addItemToCart } from '../../store/cart/cart.action';

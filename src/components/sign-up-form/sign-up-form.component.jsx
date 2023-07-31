@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth
+  createUserDocumentFromAuth,
 } from '../../Utils/firebase/firebase.utils.js';
 import FormInput from '../form-input/form-input.component.jsx';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
@@ -12,7 +12,7 @@ const defaultFormFields = {
   displayName: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
 };
 
 const SignUpForm = () => {
@@ -32,7 +32,7 @@ const SignUpForm = () => {
       try {
         const { user } = await createAuthUserWithEmailAndPassword(
           email,
-          password
+          password,
         );
         await createUserDocumentFromAuth(user, { displayName });
         navigate('/');

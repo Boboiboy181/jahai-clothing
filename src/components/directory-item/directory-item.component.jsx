@@ -3,7 +3,7 @@ import './directory-item.styles.jsx';
 import {
   BackgroundImage,
   Body,
-  DirectoryItemContainer
+  DirectoryItemContainer,
 } from './directory-item.styles.jsx';
 
 const DirectoryItem = ({ category }) => {
@@ -16,7 +16,7 @@ const DirectoryItem = ({ category }) => {
     <DirectoryItemContainer onClick={navigateHandler}>
       <BackgroundImage
         style={{
-          backgroundImage: `url(${imageUrl})`
+          backgroundImage: `url(${imageUrl})`,
         }}
       />
       <Body>

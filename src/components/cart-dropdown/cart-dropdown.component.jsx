@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   CartDropdownContainer,
   CartItems,
-  EmptyMessage
+  EmptyMessage,
 } from './cart-dropdown.styles.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector.js';

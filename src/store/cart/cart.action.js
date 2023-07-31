@@ -3,14 +3,14 @@ import { CART_ACTION_TYPES } from './cart.type';
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
-    (cartItem) => cartItem.id === productToAdd.id
+    (cartItem) => cartItem.id === productToAdd.id,
   );
   if (!existingCartItem)
     return [...cartItems, { ...productToAdd, quantity: 1 }];
   return cartItems.map((cartItem) =>
     cartItem.id === productToAdd.id
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
-      : cartItem
+      : cartItem,
   );
 };
 
@@ -20,7 +20,7 @@ const changeCartQuantity = (cartItems, productToDelete) => {
       ? cartItem.quantity > 0
         ? { ...cartItem, quantity: cartItem.quantity - 1 }
         : {}
-      : cartItem
+      : cartItem,
   );
   return newCartItems.filter((cartItem) => cartItem.quantity > 0);
 };

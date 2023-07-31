@@ -3,12 +3,12 @@ import {
   CheckoutContainer,
   CheckoutHeader,
   HeaderBlock,
-  Total
+  Total,
 } from './checkout.styles.jsx';
 import { useSelector } from 'react-redux';
 import {
   selectCartItems,
-  selectCartTotal
+  selectCartTotal,
 } from '../../store/cart/cart.selector.js';
 
 const Checkout = () => {

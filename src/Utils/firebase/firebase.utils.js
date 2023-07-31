@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -17,7 +17,7 @@ import {
   collection,
   writeBatch,
   query,
-  getDocs
+  getDocs,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -26,7 +26,7 @@ const firebaseConfig = {
   projectId: 'jahai-clothing-db-49d5c',
   storageBucket: 'jahai-clothing-db-49d5c.appspot.com',
   messagingSenderId: '225246451138',
-  appId: '1:225246451138:web:509df23cced57beae3325b'
+  appId: '1:225246451138:web:509df23cced57beae3325b',
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -34,7 +34,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
-  prompt: 'select_account'
+  prompt: 'select_account',
 });
 
 export const auth = getAuth();
@@ -49,7 +49,7 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
 ) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -74,7 +74,7 @@ export const getCategoriesAndDocuments = async () => {
 
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInfo = {}
+  additionalInfo = {},
 ) => {
   if (!userAuth) return;
 
@@ -91,7 +91,7 @@ export const createUserDocumentFromAuth = async (
         displayName,
         email,
         createAt,
-        ...additionalInfo
+        ...additionalInfo,
       });
     } catch (error) {
       console.log('There was an error');

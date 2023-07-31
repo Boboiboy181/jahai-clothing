@@ -2,7 +2,7 @@ import ProductCard from '../product-card/product-card.component';
 import {
   CategoryPreviewContainer,
   Preview,
-  PreviewTitle
+  PreviewTitle,
 } from './category-preview.styles';
 
 const CategoryPreview = ({ title, products }) => {

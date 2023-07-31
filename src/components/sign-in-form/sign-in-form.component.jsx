@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   signInWithGooglePopUp,
-  signInAuthUserWithEmailAndPassword
+  signInAuthUserWithEmailAndPassword,
 } from '../../Utils/firebase/firebase.utils.js';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
 import FormInput from '../form-input/form-input.component.jsx';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   email: '',
-  password: ''
+  password: '',
 };
 
 const SignInForm = () => {

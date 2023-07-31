@@ -5,14 +5,14 @@ import {
   ImageContainer,
   Quantity,
   RemoveButton,
-  Value
+  Value,
 } from './checkout-item.styles.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import {
   addItemToCart,
   changeItemQuantity,
-  deleteItem
+  deleteItem,
 } from '../../store/cart/cart.action';
 
 const CheckoutItem = ({ cartItem }) => {
@@ -21,8 +21,10 @@ const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
-  const increaseItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
-  const decreaseItemHandler = () => dispatch(changeItemQuantity(cartItems, cartItem));
+  const increaseItemHandler = () =>
+    dispatch(addItemToCart(cartItems, cartItem));
+  const decreaseItemHandler = () =>
+    dispatch(changeItemQuantity(cartItems, cartItem));
   const deleteItemHandler = () => dispatch(deleteItem(cartItems, cartItem));
 
   return (

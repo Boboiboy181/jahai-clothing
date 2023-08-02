@@ -29,8 +29,6 @@ export const fetchCategoriesStart = withMatcher(
     createAction(CATEGORIES_ACTION_TYPE.FETCH_CATEGORIES_START),
 );
 
-
-
 export const fetchCategoriesSuccess = withMatcher(
   (categoriesArray: Category[]): FetchCategoriesSuccess => {
     return createAction(
@@ -39,8 +37,6 @@ export const fetchCategoriesSuccess = withMatcher(
     );
   },
 );
-
-console.log(fetchCategoriesSuccess);
 
 export const fetchCategoriesFailed = withMatcher(
   (error: Error): FetchCategoriesFailed =>

@@ -9,8 +9,8 @@ import {
   EmptyMessage,
 } from './cart-dropdown.styles.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCartItems } from '../../store/cart/cart.selector.js';
-import { setIsCartOpen } from '../../store/cart/cart.action.js';
+import { selectCartItems } from '../../store/cart/cart.selector';
+import { setIsCartOpen } from '../../store/cart/cart.action';
 import { useEffect, useRef } from 'react';
 
 const CartDropdown = () => {

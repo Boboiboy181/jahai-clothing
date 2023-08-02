@@ -1,4 +1,4 @@
-export const loggerMiddleware = (store) => (next) => (action) => {
+export const loggerMiddleware = (store: any) => (next: any) => (action: any) => {
   if (!action.type) {
     return next(action);
   }

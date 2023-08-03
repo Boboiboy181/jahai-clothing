@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
-import FormInput from '../form-input/form-input.component.jsx';
-import { ButtonContainer, SignInContainer } from './sign-in-form.styles.jsx';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import FormInput from '../form-input/form-input.component';
+import { ButtonContainer, SignInContainer } from './sign-in-form.styles';
 import { useDispatch } from 'react-redux';
 import {
   emailSignInStart,
   googleSignInStart,
 } from '../../store/user/user.action';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 const defaultFormFields = {
   email: '',
@@ -28,22 +29,22 @@ const SignInForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case 'auth/wrong-password':
+      switch ((error as AuthError).code) {
+        case AuthErrorCodes.INVALID_PASSWORD:
           alert('Incorrect password for email');
           break;
-        case 'auth/user-not-found':
+        case AuthErrorCodes.USER_DELETED:
           alert('No user associated with this email');
           break;
         default:
@@ -78,8 +79,8 @@ const SignInForm = () => {
             Sign In
           </Button>
           <Button
-            type="button"
             buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
             onClick={signInWithGoogle}
           >
             Google Sign In

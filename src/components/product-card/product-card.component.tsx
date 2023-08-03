@@ -8,14 +8,20 @@ import {
 } from './product-card.styles';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { addItemToCart } from '../../store/cart/cart.action';
+import { CartItem } from '../../store/cart/cart.type';
+import { CategoryItem } from '../../store/categories/categories.type';
 
-const ProductCard = ({ product }) => {
+type ProductCardProps = {
+  product: CartItem | CategoryItem;
+};
+
+const ProductCard = ({ product }: ProductCardProps) => {
   const { name, price, imageUrl } = product;
 
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
-  const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
+  const addProductToCart = () => dispatch(addItemToCart(cartItems, product as CartItem));
 
   return (
     <ProductCartContainer>

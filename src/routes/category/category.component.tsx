@@ -10,18 +10,18 @@ import {
 import Spinner from '../../components/spinner/spinner.component';
 
 const Category = () => {
-  const { category } = useParams();
+  const { category } = useParams<string>();
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectIsLoading);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  const [products, setProducts] = useState(categoriesMap[category as string]);
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
+    setProducts(categoriesMap[category as string]);
   }, [category, categoriesMap]);
 
   return (
     <Fragment>
-      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+      <CategoryTitle>{(category as string).toUpperCase()}</CategoryTitle>
       {isLoading ? (
         <Spinner />
       ) : (

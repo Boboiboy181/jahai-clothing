@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { LinkHTMLAttributes } from 'react';
+
+type NavLinksProps = LinkHTMLAttributes<HTMLAnchorElement>;
 
 export const NavigationContainer = styled.div`
   height: 70px;
@@ -23,7 +26,7 @@ export const NavLinks = styled.div`
   justify-content: flex-end;
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link)<NavLinksProps>`
   padding: 10px 15px;
   cursor: pointer;
 `;

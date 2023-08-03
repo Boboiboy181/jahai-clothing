@@ -1,13 +1,13 @@
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
-import CartItem from '../cart-item/cart-item.component.jsx';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import CartItem from '../cart-item/cart-item.component';
 
-import './cart-dropdown.styles.jsx';
+import './cart-dropdown.styles';
 import { useNavigate } from 'react-router-dom';
 import {
   CartDropdownContainer,
   CartItems,
   EmptyMessage,
-} from './cart-dropdown.styles.jsx';
+} from './cart-dropdown.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { setIsCartOpen } from '../../store/cart/cart.action';
@@ -16,7 +16,7 @@ import { useEffect, useRef } from 'react';
 const CartDropdown = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let dropdownRef = useRef();
+  let dropdownRef = useRef<HTMLDivElement>(null);
 
   const cartItems = useSelector(selectCartItems);
 
@@ -25,12 +25,16 @@ const CartDropdown = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         dispatch(setIsCartOpen(false));
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
+
     // Clean up the event listener when the component is unmounted
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);

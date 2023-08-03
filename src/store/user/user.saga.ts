@@ -2,7 +2,6 @@ import { all, call, put, takeLatest } from 'typed-redux-saga/macro';
 import { USER_ACTION_TYPE } from './user.type';
 import {
   AdditionalInfo,
-  UserData,
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
   getCurrentUser,

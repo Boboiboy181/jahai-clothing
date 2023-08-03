@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth';
 import { AdditionalInfo, UserData } from '../../Utils/firebase/firebase.utils';
 import {
   Action,
@@ -28,7 +29,7 @@ export type SignInSuccess = ActionWithPayload<
 
 export type SignInFailed = ActionWithPayload<
   USER_ACTION_TYPE.SIGN_IN_FAILED,
-  string
+  Error
 >;
 
 export type SignUpStart = ActionWithPayload<
@@ -38,12 +39,12 @@ export type SignUpStart = ActionWithPayload<
 
 export type SignUpSuccess = ActionWithPayload<
   USER_ACTION_TYPE.SIGN_UP_SUCCESS,
-  { user: UserData; additionalDetails: AdditionalInfo }
+  { user: User; additionalDetails: AdditionalInfo }
 >;
 
 export type SignUpFailed = ActionWithPayload<
   USER_ACTION_TYPE.SIGN_UP_FAILED,
-  string
+  Error
 >;
 
 export type SignOutStart = Action<USER_ACTION_TYPE.SIGN_OUT_START>;
@@ -52,7 +53,7 @@ export type SignOutSuccess = Action<USER_ACTION_TYPE.SIGN_OUT_SUCCESS>;
 
 export type SignOutFailed = ActionWithPayload<
   USER_ACTION_TYPE.SIGN_OUT_FAILED,
-  string
+  Error
 >;
 
 export const setCurrentUser = withMatcher(
@@ -74,12 +75,12 @@ export const emailSignInStart = withMatcher(
 );
 
 export const signInSuccess = withMatcher(
-  (user: UserData): SignInSuccess =>
+  (user: UserData & { id: string }): SignInSuccess =>
     createAction(USER_ACTION_TYPE.SIGN_IN_SUCCESS, user),
 );
 
 export const signInFailed = withMatcher(
-  (error: string): SignInFailed =>
+  (error: Error): SignInFailed =>
     createAction(USER_ACTION_TYPE.SIGN_IN_FAILED, error),
 );
 
@@ -93,12 +94,12 @@ export const signUpStart = withMatcher(
 );
 
 export const signUpSuccess = withMatcher(
-  (user: UserData, additionalDetails: AdditionalInfo): SignUpSuccess =>
+  (user: User, additionalDetails: AdditionalInfo): SignUpSuccess =>
     createAction(USER_ACTION_TYPE.SIGN_UP_SUCCESS, { user, additionalDetails }),
 );
 
 export const signUpFailed = withMatcher(
-  (error: string): SignUpFailed =>
+  (error: Error): SignUpFailed =>
     createAction(USER_ACTION_TYPE.SIGN_UP_FAILED, error),
 );
 
@@ -111,6 +112,6 @@ export const signOutSuccess = withMatcher(
 );
 
 export const signOutFailed = withMatcher(
-  (error: string): SignOutFailed =>
+  (error: Error): SignOutFailed =>
     createAction(USER_ACTION_TYPE.SIGN_OUT_FAILED, error),
 );

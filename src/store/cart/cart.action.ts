@@ -62,23 +62,26 @@ export const setCartItems = withMatcher(
     createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems),
 );
 
-export const addItemToCart = withMatcher(
-  (cartItems: CartItem[], productToAdd: CartItem): SetCartItems => {
-    const newCartItems = addCartItem(cartItems, productToAdd);
-    return setCartItems(newCartItems);
-  },
-);
+export const addItemToCart = (
+  cartItems: CartItem[],
+  productToAdd: CartItem,
+): SetCartItems => {
+  const newCartItems = addCartItem(cartItems, productToAdd);
+  return setCartItems(newCartItems);
+};
 
-export const changeItemQuantity = withMatcher(
-  (cartItems: CartItem[], productToChange: CartItem): SetCartItems => {
-    const newCartItems = changeCartQuantity(cartItems, productToChange);
-    return setCartItems(newCartItems);
-  },
-);
+export const changeItemQuantity = (
+  cartItems: CartItem[],
+  productToChange: CartItem,
+): SetCartItems => {
+  const newCartItems = changeCartQuantity(cartItems, productToChange);
+  return setCartItems(newCartItems);
+};
 
-export const deleteItem = withMatcher(
-  (cartItems: CartItem[], productToDelete: CartItem): SetCartItems => {
-    const newCartItems = deleteCartItem(cartItems, productToDelete);
-    return setCartItems(newCartItems);
-  },
-);
+export const deleteItem = (
+  cartItems: CartItem[],
+  productToDelete: CartItem,
+): SetCartItems => {
+  const newCartItems = deleteCartItem(cartItems, productToDelete);
+  return setCartItems(newCartItems);
+};

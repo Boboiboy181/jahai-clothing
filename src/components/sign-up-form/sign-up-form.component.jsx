@@ -3,7 +3,7 @@ import FormInput from '../form-input/form-input.component.jsx';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component.jsx';
 import { SignUpContainer } from './sign-up-form.styles.jsx';
 import { useDispatch } from 'react-redux';
-import { signUpStart } from '../../store/user/user.action.js';
+import { signUpStart } from '../../store/user/user.action';
 
 const defaultFormFields = {
   displayName: '',

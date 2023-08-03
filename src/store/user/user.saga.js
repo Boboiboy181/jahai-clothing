@@ -1,5 +1,5 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import USER_ACTION_TYPE from './user.type';
+import { USER_ACTION_TYPE } from './user.type';
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -103,7 +103,6 @@ export function* onEmailSignInStart() {
 export function* onSignUpStart() {
   yield takeLatest(USER_ACTION_TYPE.SIGN_UP_START, signUp);
 }
-
 
 export function* onSignUpSuccess() {
   yield takeLatest(USER_ACTION_TYPE.SIGN_UP_SUCCESS, signInAfterSignUp);

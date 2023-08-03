@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import {
   emailSignInStart,
   googleSignInStart,
-} from '../../store/user/user.action.js';
+} from '../../store/user/user.action';
 
 const defaultFormFields = {
   email: '',

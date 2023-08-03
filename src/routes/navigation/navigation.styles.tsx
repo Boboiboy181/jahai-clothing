@@ -1,24 +1,44 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LinkHTMLAttributes } from 'react';
 
 type NavLinksProps = LinkHTMLAttributes<HTMLAnchorElement>;
 
-export const NavigationContainer = styled.div`
+type NavigationContainerProps = {
+  $fixed?: boolean;
+};
+
+const fixed = css`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: white;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  padding: 0 40px;
+`;
+
+export const NavigationContainer = styled.div<NavigationContainerProps>`
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  align-items: center;
+  position: relative;
+  ${({ $fixed }) => $fixed && fixed};
 `;
 
 export const LogoContainer = styled(Link)`
-  height: 100%;
   width: 70px;
-  padding: 25px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
 `;
 
 export const NavLinks = styled.div`
+  flex: 1;
   width: 50%;
   height: 100%;
   display: flex;

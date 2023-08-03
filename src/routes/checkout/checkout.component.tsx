@@ -1,7 +1,10 @@
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import {
   CheckoutContainer,
+  CheckoutFooter,
   CheckoutHeader,
+  EmptyMessageContainer,
+  GotoPayment,
   HeaderBlock,
   Total,
 } from './checkout.styles';
@@ -10,13 +13,21 @@ import {
   selectCartItems,
   selectCartTotal,
 } from '../../store/cart/cart.selector';
-import PaymentForm from '../../components/payment-form/payment-form.component';
+import { Link } from 'react-router-dom';
+import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
-  return (
+  return !cartItems.length ? (
+    <EmptyMessageContainer>
+      <h1>Your cart is empty !</h1>
+      <Link to="/shop">
+        <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>Back to shop</Button>
+      </Link>
+    </EmptyMessageContainer>
+  ) : (
     <CheckoutContainer>
       <CheckoutHeader>
         <HeaderBlock>
@@ -38,8 +49,12 @@ const Checkout = () => {
       {cartItems.map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
-      <Total>total: ${cartTotal}</Total>
-      <PaymentForm />
+      <CheckoutFooter>
+        <GotoPayment to="payment">
+          <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>Go to payment</Button>
+        </GotoPayment>
+        <Total>total: ${cartTotal}</Total>
+      </CheckoutFooter>
     </CheckoutContainer>
   );
 };

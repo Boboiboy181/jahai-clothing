@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
@@ -24,16 +24,26 @@ const Navigation = () => {
 
   const signOutUser = () => dispatch(signOutStart());
 
+  const [isFixed, setIsFixed] = useState(false);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 70) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  });
+
   return (
     <Fragment>
-      <NavigationContainer>
+      <NavigationContainer $fixed={isFixed}>
         <LogoContainer to="/">
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            <NavLink to='/' as="span" onClick={signOutUser}>
+            <NavLink to="/" as="span" onClick={signOutUser}>
               SIGN OUT
             </NavLink>
           ) : (

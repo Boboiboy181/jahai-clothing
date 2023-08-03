@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CheckoutContainer = styled.div`
@@ -28,6 +29,27 @@ export const HeaderBlock = styled.div`
 
 export const Total = styled.span`
   margin-top: 30px;
-  margin-left: auto;
   font-size: 36px;
+`;
+
+export const GotoPayment = styled(Link)`
+  margin-top: 30px;
+  font-size: 36px;
+`;
+
+export const EmptyMessageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  height: 50svh;
+`;
+
+export const CheckoutFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 100px;
 `;

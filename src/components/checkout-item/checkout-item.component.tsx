@@ -15,12 +15,13 @@ import {
   deleteItem,
 } from '../../store/cart/cart.action';
 import { CartItem } from '../../store/cart/cart.type';
+import { memo } from 'react';
 
 type CheckoutItemProps = {
   cartItem: CartItem;
 };
 
-const CheckoutItem = ({ cartItem }: CheckoutItemProps) => {
+const CheckoutItem = memo(({ cartItem }: CheckoutItemProps) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   const dispatch = useDispatch();
@@ -47,6 +48,6 @@ const CheckoutItem = ({ cartItem }: CheckoutItemProps) => {
       <RemoveButton onClick={deleteItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
-};
+});
 
 export default CheckoutItem;

@@ -19,6 +19,8 @@ const Category = () => {
     setProducts(categoriesMap[category as string]);
   }, [category, categoriesMap]);
 
+  window.scrollTo(0, 0);
+
   return (
     <Fragment>
       <CategoryTitle>{(category as string).toUpperCase()}</CategoryTitle>

@@ -11,6 +11,8 @@ const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectIsLoading);
 
+  window.scrollTo(0, 0);
+
   return (
     <Fragment>
       {isLoading ? (

@@ -12,6 +12,8 @@ const Shop = () => {
     dispatch(fetchCategoriesStart());
   }, [dispatch]);
 
+  window.scrollTo(0, 0);
+
   return (
     <Routes>
       <Route index element={<CategoriesPreview />} />

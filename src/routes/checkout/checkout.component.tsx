@@ -14,11 +14,15 @@ import {
   selectCartTotal,
 } from '../../store/cart/cart.selector';
 import { Link } from 'react-router-dom';
-import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
+import Button, {
+  BUTTON_TYPE_CLASSES,
+} from '../../components/button/button.component';
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+
+  window.scrollTo(0, 0);
 
   return !cartItems.length ? (
     <EmptyMessageContainer>
@@ -51,7 +55,9 @@ const Checkout = () => {
       })}
       <CheckoutFooter>
         <GotoPayment to="payment">
-          <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>Go to payment</Button>
+          <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>
+            Go to payment
+          </Button>
         </GotoPayment>
         <Total>total: ${cartTotal}</Total>
       </CheckoutFooter>

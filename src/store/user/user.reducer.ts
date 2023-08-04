@@ -11,7 +11,7 @@ import {
 export type UserState = {
   readonly currentUser: null | UserData;
   readonly isLoading: boolean;
-  readonly error: null | string;
+  readonly error: null | Error;
 };
 
 const INITIAL_STATE: UserState = {

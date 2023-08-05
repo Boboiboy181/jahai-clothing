@@ -9,6 +9,14 @@ export const CartItemContainer = styled.div`
   img {
     width: 30%;
   }
+
+  @media screen and (max-width: 800px) {
+    img {
+      width: 40%;
+    }
+
+    height: 70px;
+  }
 `;
 
 export const ItemDetails = styled.div`

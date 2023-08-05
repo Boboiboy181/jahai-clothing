@@ -5,6 +5,11 @@ export const PaymentFormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 25px;
+    height: fit-content;
+  }
 `;
 
 export const FormContainer = styled.form`
@@ -12,6 +17,10 @@ export const FormContainer = styled.form`
 
   p > span {
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 800px) {
+    min-width: unset;
   }
 `;
 

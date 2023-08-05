@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import FormInput from '../form-input/form-input.component';
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import { SignUpContainer } from './sign-up-form.styles';
+import { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import { ButtonStyles, SignUpContainer } from './sign-up-form.styles';
 import { useDispatch } from 'react-redux';
 import { signUpStart } from '../../store/user/user.action';
 import { AuthError, AuthErrorCodes } from 'firebase/auth';
@@ -87,9 +87,9 @@ const SignUpForm = () => {
           value={confirmPassword}
         />
 
-        <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
+        <ButtonStyles type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
           Sign up
-        </Button>
+        </ButtonStyles>
       </form>
     </SignUpContainer>
   );

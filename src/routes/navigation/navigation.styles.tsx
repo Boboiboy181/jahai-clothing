@@ -27,6 +27,12 @@ export const NavigationContainer = styled.div<NavigationContainerProps>`
   align-items: center;
   position: relative;
   ${({ $fixed }) => $fixed && fixed};
+
+  @media screen and (max-width: 800px) {
+    height: 60px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -35,6 +41,11 @@ export const LogoContainer = styled(Link)`
   top: 50%;
   transform: translateY(-50%);
   margin-left: 10px;
+
+  @media screen and (max-width: 800px) {
+    width: 50px;
+    padding: 0;
+  }
 `;
 
 export const NavLinks = styled.div`
@@ -44,6 +55,10 @@ export const NavLinks = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 800px) {
+    width: 80px;
+  }
 `;
 
 export const NavLink = styled(Link)<NavLinksProps>`

@@ -8,6 +8,10 @@ type NavigationContainerProps = {
   $fixed?: boolean;
 };
 
+type LogoContainerProps = {
+  $fixed?: boolean;
+};
+
 const fixed = css`
   position: fixed;
   top: 0;
@@ -16,6 +20,10 @@ const fixed = css`
   background-color: white;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   padding: 0 40px;
+`;
+
+const setFixedLogo = css`
+  left: 0%;
 `;
 
 export const NavigationContainer = styled.div<NavigationContainerProps>`
@@ -35,16 +43,31 @@ export const NavigationContainer = styled.div<NavigationContainerProps>`
   }
 `;
 
-export const LogoContainer = styled(Link)`
-  width: 70px;
+export const LogoContainer = styled(Link)<LogoContainerProps>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  left: -3.5%;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${({ $fixed }) => $fixed && setFixedLogo};
+
+  svg {
+    height: 145px;
+  }
+
+  p {
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    left: 7rem;
+  }
 
   @media screen and (max-width: 800px) {
-    width: 50px;
     padding: 0;
+    font-size: 20px;
   }
 `;
 
@@ -64,4 +87,5 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)<NavLinksProps>`
   padding: 10px 15px;
   cursor: pointer;
+  font-size: 1.2rem;
 `;

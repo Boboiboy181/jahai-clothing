@@ -8,14 +8,15 @@ export const CartDropdownContainer = styled.div`
   flex-direction: column;
   padding: 20px;
   background-color: white;
-  top: 90px;
-  right: 40px;
+  top: 70px;
+  right: 10px;
   z-index: 5;
   border: 1px solid #000;
-  border-radius: 2px;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 
   button {
-    margin-top: auto;
+    margin-top: 1rem;
   }
 
   @media screen and (max-width: 800px) {

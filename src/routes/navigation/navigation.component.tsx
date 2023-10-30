@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
+import { ReactComponent as CrwnLogo } from '../../assets/jahai.svg';
 
 import {
   LogoContainer,
@@ -37,8 +37,9 @@ const Navigation = () => {
   return (
     <Fragment>
       <NavigationContainer $fixed={isFixed}>
-        <LogoContainer to="/">
+        <LogoContainer $fixed={isFixed} to="/">
           <CrwnLogo className="logo" />
+          <p>JAHAI</p>
         </LogoContainer>
         <NavLinks>
           <NavLink to="/shop">SHOP</NavLink>

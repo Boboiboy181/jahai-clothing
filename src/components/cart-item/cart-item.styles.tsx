@@ -8,6 +8,7 @@ export const CartItemContainer = styled.div`
 
   img {
     width: 30%;
+    border-radius: 5px;
   }
 
   @media screen and (max-width: 800px) {

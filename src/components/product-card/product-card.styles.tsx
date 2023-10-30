@@ -13,6 +13,10 @@ export const ProductCartContainer = styled.div`
     height: 95%;
     object-fit: cover;
     margin-bottom: 5px;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   }
 
   button {
@@ -61,11 +65,12 @@ export const ProductCartContainer = styled.div`
 `;
 
 export const ProductCartFooter = styled.div`
-  width: 100%;
+  width: 98%;
   height: 5%;
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 18px;  
+  margin-top: .5rem;
 `;
 
 export const Name = styled.span`

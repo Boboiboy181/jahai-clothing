@@ -8,6 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 90rem;
+    position: relative;
+    margin: 0 auto;
   }
 
   code {

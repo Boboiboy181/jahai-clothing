@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
@@ -7,6 +7,7 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component
 import { ReactComponent as CrwnLogo } from '../../assets/jahai.svg';
 
 import {
+  Line,
   LogoContainer,
   NavigationContainer,
   NavLink,
@@ -33,6 +34,13 @@ const Navigation = () => {
       setIsFixed(false);
     }
   });
+  const url = useLocation();
+
+  const checkIsPaymentRoute = () => {
+    if (url.pathname.includes('payment')) {
+      return true;
+    } else return false;
+  };
 
   return (
     <Fragment>
@@ -40,6 +48,9 @@ const Navigation = () => {
         <LogoContainer $fixed={isFixed} to="/">
           <CrwnLogo className="logo" />
           <p>JAHAI</p>
+          <Line $isPayment={checkIsPaymentRoute()}>
+            <span>Payment</span>
+          </Line>
         </LogoContainer>
         <NavLinks>
           <NavLink to="/shop">SHOP</NavLink>

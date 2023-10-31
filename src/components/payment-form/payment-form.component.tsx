@@ -1,8 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import Button from '../button/button.component';
 import {
   CartElementContainer,
   FormContainer,
+  OrderSummary,
   PaymentFormContainer,
   PaymentFormFooter,
 } from './payment-form.styles';
@@ -95,6 +96,7 @@ const PaymentForm = () => {
   return (
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
+        <Button>PROCEED TO PAYMENT</Button>
         {currentUser ? (
           <Fragment>
             <p>Name: {currentUser.displayName}</p>
@@ -128,13 +130,18 @@ const PaymentForm = () => {
           Working day: <span>7-14 days after payment</span>
         </p>
         <PaymentFormFooter>
-          <h2>Total: ${amount}</h2>
-          <Button
-            buttonType={BUTTON_TYPE_CLASSES.inverted}
-            isLoading={isProcessingPayment}
-          >
-            Pay now
-          </Button>
+          <OrderSummary>
+            <p className='summary'>Order summary:</p>
+            <div className='total'>
+              <p>Subtotal (x items)</p>
+              <p>Total: {amount} VND</p>
+            </div>
+            <div className='shipping'>
+              <p>Shipping fees:</p>
+              <p>xxx.xxx.xxx VND</p>
+            </div>
+          </OrderSummary>
+          <Button isLoading={isProcessingPayment}>PROCEED TO PAYMENT</Button>
         </PaymentFormFooter>
       </FormContainer>
     </PaymentFormContainer>

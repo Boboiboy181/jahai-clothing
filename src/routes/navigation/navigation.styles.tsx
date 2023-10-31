@@ -12,6 +12,10 @@ type LogoContainerProps = {
   $fixed?: boolean;
 };
 
+type LineProps = {
+  $isPayment?: boolean;
+};
+
 const fixed = css`
   position: fixed;
   top: 0;
@@ -55,19 +59,35 @@ export const LogoContainer = styled(Link)<LogoContainerProps>`
   ${({ $fixed }) => $fixed && setFixedLogo};
 
   svg {
-    height: 145px;
+    height: 120px;
   }
 
   p {
     position: absolute;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
-    left: 7rem;
+    left: 6rem;
   }
 
   @media screen and (max-width: 800px) {
     padding: 0;
     font-size: 20px;
+  }
+`;
+
+export const Line = styled.div<LineProps>`
+  position: absolute;
+  height: 47px;
+  width: 2px;
+  background-color: black;
+  left: 165%;
+  ${({ $isPayment }) => !$isPayment && { display: 'none' }};
+
+  span {
+    line-height: 47px;
+    font-size: 28px;
+    font-weight: 300;
+    margin-left: 15px;
   }
 `;
 
@@ -87,5 +107,5 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)<NavLinksProps>`
   padding: 10px 15px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 `;

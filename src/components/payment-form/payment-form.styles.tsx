@@ -47,12 +47,21 @@ export const PaymentFormFooter = styled.div`
   flex-direction: column;
 
   button {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     width: 100%;
   }
 
   h2 {
     margin: unset;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  .working-days {
+    margin: unset;
+    margin-bottom: 10px;
   }
 `;
 

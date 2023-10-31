@@ -58,3 +58,60 @@ export const DeliveryContainer = styled.div`
     text-decoration: underline;
   }
 `;
+
+export const TypeOfAddress = styled.div`
+  display: flex;
+  justify-content: space-around;
+  p {
+    font-weight: bold;
+  }
+
+  div {
+    display: flex;
+    gap: 20px;
+  }
+`;
+
+export const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: black;
+`;
+
+export const SetDefault = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 55px;
+  margin-top: 10px;
+
+  p {
+    font-weight: 300;
+  }
+
+  input[type='checkbox'] {
+    background-color: #fff;
+    margin: 0;
+    width: 33px;
+    height: 33px;
+    appearance: none;
+    transform: translateY(-0.075em);
+    border: 1px solid black;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    margin-right: 15px;
+  }
+
+  input[type='checkbox']::before {
+    content: '';
+    display: block;
+    background-color: #1534a5;
+    width: 22px;
+    height: 22px;
+    transform: scale(0);
+  }
+
+  input[type='checkbox']:checked::before {
+    transform: scale(1);
+  }
+`;

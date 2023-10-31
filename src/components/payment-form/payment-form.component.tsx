@@ -125,22 +125,22 @@ const PaymentForm = () => {
         <CartElementContainer>
           <CardElement />
         </CartElementContainer>
-        <p>Address: Ho Chi Minh city, 8 Duong Van Cam street, Thu Duc city</p>
-        <p>
-          Working day: <span>7-14 days after payment</span>
-        </p>
         <PaymentFormFooter>
           <OrderSummary>
-            <p className='summary'>Order summary:</p>
-            <div className='total'>
+            <p className="summary">Order summary:</p>
+            <div className="total">
               <p>Subtotal (x items)</p>
               <p>Total: {amount} VND</p>
             </div>
-            <div className='shipping'>
+            <div className="shipping">
               <p>Shipping fees:</p>
               <p>xxx.xxx.xxx VND</p>
             </div>
           </OrderSummary>
+          <p>Address: Ho Chi Minh city, 8 Duong Van Cam street, Thu Duc city</p>
+          <p className='working-days'>
+            Working day: <span>7-14 days after payment</span>
+          </p>
           <Button isLoading={isProcessingPayment}>PROCEED TO PAYMENT</Button>
         </PaymentFormFooter>
       </FormContainer>

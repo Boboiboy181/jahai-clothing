@@ -1,11 +1,8 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import Button from '../button/button.component';
 import {
   CartElementContainer,
   FormContainer,
-  OrderSummary,
   PaymentFormContainer,
-  PaymentFormFooter,
 } from './payment-form.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCartTotal } from '../../store/cart/cart.selector';
@@ -15,6 +12,7 @@ import { StripeCardElement } from '@stripe/stripe-js';
 import FormInput from '../form-input/form-input.component';
 import { setCartItems } from '../../store/cart/cart.action';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../modal/modal.component';
 
 const ifValidCardElement = (
   card: StripeCardElement | null,
@@ -25,7 +23,13 @@ const defaultFormVFalue = {
   email: '',
 };
 
-const PaymentForm = () => {
+const PaymentForm = ({
+  isOpen,
+  handleOpen,
+}: {
+  isOpen: boolean;
+  handleOpen: () => void;
+}) => {
   const stripe = useStripe();
   const elements = useElements();
   const amount = useSelector(selectCartTotal);
@@ -94,57 +98,40 @@ const PaymentForm = () => {
   };
 
   return (
-    <PaymentFormContainer>
-      <FormContainer onSubmit={paymentHandler}>
-        <Button>PROCEED TO PAYMENT</Button>
-        {currentUser ? (
-          <Fragment>
-            <p>Name: {currentUser.displayName}</p>
-            <p>Email: {currentUser.email}</p>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <FormInput
-              label="Name"
-              required
-              name="name"
-              value={formValue.name}
-              type="text"
-              onChange={(e) => handleChange(e)}
-            />
-            <FormInput
-              label="Email"
-              required
-              name="email"
-              value={formValue.email}
-              type="email"
-              onChange={(e) => handleChange(e)}
-            />
-          </Fragment>
-        )}
-        <CartElementContainer>
-          <CardElement />
-        </CartElementContainer>
-        <PaymentFormFooter>
-          <OrderSummary>
-            <p className="summary">Order summary:</p>
-            <div className="total">
-              <p>Subtotal (x items)</p>
-              <p>Total: {amount} VND</p>
-            </div>
-            <div className="shipping">
-              <p>Shipping fees:</p>
-              <p>xxx.xxx.xxx VND</p>
-            </div>
-          </OrderSummary>
-          <p>Address: Ho Chi Minh city, 8 Duong Van Cam street, Thu Duc city</p>
-          <p className='working-days'>
-            Working day: <span>7-14 days after payment</span>
-          </p>
-          <Button isLoading={isProcessingPayment}>PROCEED TO PAYMENT</Button>
-        </PaymentFormFooter>
-      </FormContainer>
-    </PaymentFormContainer>
+    <Modal isLoading={isProcessingPayment} handleConfirm={paymentHandler} modalTitle='Pay with card' isOpen={isOpen} handleOpen={handleOpen}>
+      <PaymentFormContainer>
+        <FormContainer>
+          {currentUser ? (
+            <Fragment>
+              <p>Name: {currentUser.displayName}</p>
+              <p>Email: {currentUser.email}</p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <FormInput
+                label="Name"
+                required
+                name="name"
+                value={formValue.name}
+                type="text"
+                onChange={(e) => handleChange(e)}
+              />
+              <FormInput
+                label="Email"
+                required
+                name="email"
+                value={formValue.email}
+                type="email"
+                onChange={(e) => handleChange(e)}
+              />
+            </Fragment>
+          )}
+          <CartElementContainer>
+            <CardElement />
+          </CartElementContainer>
+        </FormContainer>
+      </PaymentFormContainer>
+    </Modal>
   );
 };
 

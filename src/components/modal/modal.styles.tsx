@@ -18,7 +18,7 @@ export const ModalContainer = styled.div<ModalProps>`
 export const ModelContent = styled.div`
   position: relative;
   margin: auto;
-  padding: 43px 120px 54px;
+  padding: 43px 100px 54px;
   background-color: white;
   border-radius: 16px;
   width: 50%;
@@ -26,6 +26,11 @@ export const ModelContent = styled.div`
   h2 {
     text-decoration: underline;
     font-size: 28px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 50%;
+    padding: 25px 50px 45px;
   }
 `;
 

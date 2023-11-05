@@ -6,6 +6,7 @@ export const PaymentContainer = styled.div`
   justify-content: center;
   flex-direction: row;
   gap: 40px;
+  margin-bottom: 50px;
 `;
 
 export const PaymentInfo = styled.div`

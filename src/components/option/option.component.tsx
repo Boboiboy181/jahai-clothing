@@ -1,23 +1,25 @@
 import { CheckContainer, OptionContainer, OptionDes } from './option.styles';
 
 type OptionProps = {
-  option: boolean;
+  id?: string;
+  className?: string;
+  isChecked: boolean;
+  children: React.ReactNode;
   handleOnCheck: () => void;
 };
 
-const Option = ({ option, handleOnCheck }: OptionProps) => {
+const Option = ({ id, isChecked, children, handleOnCheck, className }: OptionProps) => {
   return (
-    <OptionContainer $option={option}>
+    <OptionContainer className={className} $option={isChecked}>
       <CheckContainer>
-        <input type="checkbox" onChange={handleOnCheck} checked={option} />
-        <p>đ xx.xxx</p>
+        <input
+          id={id}
+          type="checkbox"
+          onChange={handleOnCheck}
+          checked={isChecked}
+        />
       </CheckContainer>
-      <OptionDes>
-        <p>Priority Delivery</p>
-        <p>
-          Guaranteed by xxx xxxx
-        </p>
-      </OptionDes>
+      <OptionDes>{children}</OptionDes>
     </OptionContainer>
   );
 };

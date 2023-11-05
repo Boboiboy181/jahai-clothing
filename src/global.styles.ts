@@ -4,12 +4,15 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 20px 40px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Josefin Sans', sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: 90rem;
     position: relative;
     margin: 0 auto;
+
+    @media (min-width: 1400px) {
+      width: 1440px;
+    }
   }
 
   code {

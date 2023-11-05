@@ -23,7 +23,6 @@ export const OptionContainer = styled.div<OptionProps>`
 export const CheckContainer = styled.div`
   display: flex;
   align-items: flex-end;
-  border-bottom: 2px solid black;
   width: fit-content;
 
   input[type='checkbox'] {

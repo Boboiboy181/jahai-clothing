@@ -1,11 +1,14 @@
 import { styled } from 'styled-components';
 
-export const PaymentFormContainer = styled.div`
+export const PaymentOptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 1px solid black;
   border-radius: 16px;
+  padding: 20px;
+  margin-top: 40px;
   flex-basis: 35%;
 
   @media screen and (max-width: 800px) {
@@ -14,8 +17,8 @@ export const PaymentFormContainer = styled.div`
   }
 `;
 
-export const FormContainer = styled.form`
-  width: 95%;
+export const OptionContainer = styled.div`
+  width: 100%;
 
   p > span {
     font-weight: bold;
@@ -24,27 +27,20 @@ export const FormContainer = styled.form`
   @media screen and (max-width: 800px) {
     min-width: unset;
   }
-  
+
   button {
     width: 100%;
   }
 `;
 
-export const CartElementContainer = styled.div`
-  border: 1px solid gray;
-  margin: 1rem 0 1.5rem 0;
-  padding: 1rem;
-  border-radius: 10px;
-`;
-
-export const PaymentFormFooter = styled.div`
+export const PaymentOptionFooter = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
 
   button {
-    /* margin-top: 20px; */
+    margin-top: 10px; 
     width: 100%;
   }
 
@@ -87,5 +83,23 @@ export const OrderSummary = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+  }
+`;
+
+export const OptionsList = styled.div`
+  margin-bottom: 20px;
+
+  .option {
+    margin-bottom: 10px;
+    background: unset;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+
+    div:last-child {
+      margin: unset;
+    }
   }
 `;

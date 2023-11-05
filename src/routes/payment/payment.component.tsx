@@ -3,7 +3,6 @@ import Button, {
   BUTTON_TYPE_CLASSES,
 } from '../../components/button/button.component';
 import Option from '../../components/option/option.component';
-import PaymentForm from '../../components/payment-form/payment-form.component';
 import {
   DeliveryContainer,
   Line,
@@ -16,17 +15,44 @@ import {
 } from './payment.styles';
 import Modal from '../../components/modal/modal.component';
 import FormInput from '../../components/form-input/form-input.component';
+import PaymentOption from '../../components/payment-option/payment-option.component';
+import PaymentForm from '../../components/payment-form/payment-form.component';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
+
+const options = [
+  {
+    id: '1',
+    isChecked: false,
+  },
+  {
+    id: '2',
+    isChecked: false,
+  },
+];
 
 const Payment = () => {
-  const [option, setOption] = useState(true);
   const [isAddressOpen, setIsAddressOpen] = useState(false);
+  const [isPayWithCardOpen, setIsPayWithCardOpen] = useState(false);
+  const currentUser = useSelector(selectCurrentUser);
+
+  const handleOpenPayWithCard = () => {
+    setIsPayWithCardOpen(!isPayWithCardOpen);
+  }
 
   const handleOpenAddress = () => {
     setIsAddressOpen(!isAddressOpen);
   };
 
-  const handleOnCheck = () => {
-    setOption(!option);
+  const [optionsList, setOptionsList] = useState(options);
+
+  const handleOnCheck = (id: string) => {
+    const newUpdatedOptions = options.map((option) => {
+      return option.id === id
+        ? { ...option, isChecked: !option.isChecked }
+        : option;
+    });
+    setOptionsList([...newUpdatedOptions]);
   };
 
   return (
@@ -35,7 +61,7 @@ const Payment = () => {
         <PaymentInfo>
           <PaymentAddress>
             <h3>Address</h3>
-            <p className="name">Tên người gửi: Nguyễn Văn A - SĐT: xxxx.xxxx</p>
+            <p className="name">Tên người gửi: {currentUser?.displayName} - SĐT: xxxx.xxxx</p>
             <p className="address">
               Số nhà, tên đường, phường, quận, huyện/ thành phố, tỉnh
             </p>
@@ -49,15 +75,31 @@ const Payment = () => {
           <DeliveryContainer>
             <h3>Choose your delivery option</h3>
             <OptionsContainer>
-              <Option option={option} handleOnCheck={handleOnCheck} />
-              <Option option={!option} handleOnCheck={handleOnCheck} />
+              <Option
+                id={optionsList[0].id}
+                isChecked={optionsList[0].isChecked}
+                handleOnCheck={() => handleOnCheck(optionsList[0].id)}
+              >
+                <p>đ xx.xxx</p>
+                <p>Priority Delivery</p>
+                <p>Guaranteed by xxx xxxx</p>
+              </Option>
+              <Option
+                id={optionsList[1].id}
+                isChecked={optionsList[1].isChecked}
+                handleOnCheck={() => handleOnCheck(optionsList[1].id)}
+              >
+                <p>đ xx.xxx</p>
+                <p>Priority Delivery</p>
+                <p>Guaranteed by xxx xxxx</p>
+              </Option>
             </OptionsContainer>
           </DeliveryContainer>
         </PaymentInfo>
-        <PaymentForm />
+        <PaymentOption handlePayWithCardOpen={setIsPayWithCardOpen}/>
       </PaymentContainer>
       {isAddressOpen && (
-        <Modal isOpen={isAddressOpen} handleOpen={handleOpenAddress}>
+        <Modal modalTitle='Change address' isOpen={isAddressOpen} handleOpen={handleOpenAddress}>
           <FormInput label="Full name" />
           <FormInput label="Phone number" />
           <FormInput label="Address" />
@@ -76,6 +118,7 @@ const Payment = () => {
           <Line></Line>
         </Modal>
       )}
+      {isPayWithCardOpen && <PaymentForm isOpen={isPayWithCardOpen} handleOpen={handleOpenPayWithCard}/>}
     </Fragment>
   );
 };

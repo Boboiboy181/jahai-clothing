@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 exports.handler = async (event, context) => {
   var accessKey = 'F8BBA842ECF85';
   var secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
@@ -7,16 +5,16 @@ exports.handler = async (event, context) => {
   var partnerCode = 'MOMO';
   const environment = process.env.NODE_ENV || 'development';
 
-  // Define the URLs based on the environment
   let redirectUrl, ipnUrl;
 
   if (environment === 'production') {
-    redirectUrl = process.env.REDIRECT_URL_PRODUCTION;
-    ipnUrl = process.env.IPN_URL_PRODUCTION;
+    redirectUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
+    ipnUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
   } else {
-    redirectUrl = process.env.REDIRECT_URL_DEVELOPMENT;
-    ipnUrl = process.env.IPN_URL_DEVELOPMENT;
+    redirectUrl = 'http://localhost:8888/shop';
+    ipnUrl = 'http://localhost:8888/shop';
   }
+
   var requestType = 'payWithMethod';
   var amount = '10000';
   var orderId = partnerCode + new Date().getTime();

@@ -10,12 +10,12 @@ const Modal = ({
   handleOpen,
   handleConfirm,
 }: {
-  isLoading: boolean;
+  isLoading?: boolean;
   modalTitle: string;
   children: React.ReactNode;
   isOpen: boolean;
   handleOpen: () => void;
-  handleConfirm: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleConfirm?: (e: FormEvent<HTMLFormElement>) => Promise<void>;
 }) => {
   return (
     <ModalContainer $isOpen={isOpen}>

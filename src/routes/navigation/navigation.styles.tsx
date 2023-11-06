@@ -72,6 +72,14 @@ export const LogoContainer = styled(Link)<LogoContainerProps>`
   @media screen and (max-width: 800px) {
     padding: 0;
     font-size: 20px;
+
+    p {
+      display: none;
+    }
+
+    div {
+      display: none;
+    }
   }
 `;
 
@@ -88,6 +96,12 @@ export const Line = styled.div<LineProps>`
     font-size: 28px;
     font-weight: 300;
     margin-left: 15px;
+  }
+
+  @media screen and (max-width: 800px) {
+    span {
+      display: none;
+    }
   }
 `;
 

@@ -58,11 +58,23 @@ const PaymentOption = ({
     setOptionsList([...newUpdatedOptions]);
   };
 
+  const paymentHandlerMoMo = async () => {
+    const result = await fetch('/.netlify/functions/momo-payment').then((res) =>
+      res.json(),
+    );
+
+    dispatch(setCartItems([]));
+    window.location.href = result.response.shortLink;
+  };
+
   const isID = () => {
     const id = optionsList.find((option) => option.isChecked === true)?.id;
     switch (id) {
       case '1':
         handlePayWithCardOpen(true);
+        return;
+      case '4':
+        paymentHandlerMoMo();
         return;
       case '5':
         alert('Payment success');

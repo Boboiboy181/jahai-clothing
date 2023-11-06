@@ -21,7 +21,7 @@ export const ModelContent = styled.div`
   padding: 43px 100px 54px;
   background-color: white;
   border-radius: 16px;
-  width: 50%;
+  /* width: 50%; */
 
   h2 {
     text-decoration: underline;
@@ -32,6 +32,11 @@ export const ModelContent = styled.div`
     width: 50%;
     padding: 25px 50px 45px;
   }
+
+  @media screen and (max-width: 800px) {
+    width: 85%;
+    padding: 15px 30px 25px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -39,4 +44,15 @@ export const ButtonContainer = styled.div`
   justify-content: flex-end;
   gap: 25px;
   margin-top: 32px;
+
+  form {
+    button {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    gap: 10px;
+    flex-direction: column-reverse;
+  }
 `;

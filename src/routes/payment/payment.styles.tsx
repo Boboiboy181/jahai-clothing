@@ -7,6 +7,11 @@ export const PaymentContainer = styled.div`
   flex-direction: row;
   gap: 40px;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 export const PaymentInfo = styled.div`
@@ -44,6 +49,11 @@ export const OptionsContainer = styled.div`
   justify-content: space-between;
   gap: 20px;
   margin-top: 20px;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 export const DeliveryContainer = styled.div`
@@ -70,6 +80,14 @@ export const TypeOfAddress = styled.div`
   div {
     display: flex;
     gap: 20px;
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
   }
 `;
 
@@ -84,6 +102,10 @@ export const SetDefault = styled.div`
   align-items: center;
   margin-left: 55px;
   margin-top: 10px;
+
+  @media screen and (max-width: 800px) {
+    margin-left: 0; 
+  }
 
   p {
     font-weight: 300;

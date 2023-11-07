@@ -1,30 +1,20 @@
 exports.handler = async (event, context) => {
-  var accessKey = 'F8BBA842ECF85';
-  var secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
-  var orderInfo = 'pay with MoMo';
-  var partnerCode = 'MOMO';
-  const environment = process.env.NODE_ENV || 'development';
+  const accessKey = 'F8BBA842ECF85';
+  const secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
+  const orderInfo = 'pay with MoMo';
+  const partnerCode = 'MOMO';
+  const redirectUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
+  const ipnUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
+  const requestType = 'payWithMethod';
+  const amount = '10000';
+  const orderId = partnerCode + new Date().getTime();
+  const requestId = orderId;
+  const extraData = '';
+  const orderGroupId = '';
+  const autoCapture = true;
+  const lang = 'vi';
 
-  let redirectUrl, ipnUrl;
-
-  if (environment === 'production') {
-    redirectUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
-    ipnUrl = 'https://regal-banoffee-49bcae.netlify.app/shop';
-  } else {
-    redirectUrl = 'http://localhost:8888/shop';
-    ipnUrl = 'http://localhost:8888/shop';
-  }
-
-  var requestType = 'payWithMethod';
-  var amount = '10000';
-  var orderId = partnerCode + new Date().getTime();
-  var requestId = orderId;
-  var extraData = '';
-  var orderGroupId = '';
-  var autoCapture = true;
-  var lang = 'vi';
-
-  var rawSignature =
+  const rawSignature =
     'accessKey=' +
     accessKey +
     '&amount=' +
@@ -47,7 +37,7 @@ exports.handler = async (event, context) => {
     requestType;
 
   const crypto = require('crypto');
-  var signature = crypto
+  const signature = crypto
     .createHmac('sha256', secretKey)
     .update(rawSignature)
     .digest('hex');

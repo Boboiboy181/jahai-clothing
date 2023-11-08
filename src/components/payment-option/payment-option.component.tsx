@@ -6,11 +6,13 @@ import {
   OrderSummary,
   PaymentOptionContainer,
   PaymentOptionFooter,
+  VoucherContainer,
 } from './payment-option.styles';
 import Option from '../option/option.component';
 import { setCartItems } from '../../store/cart/cart.action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { selectCartTotal } from '../../store/cart/cart.selector';
 
 const options = [
   {
@@ -48,6 +50,7 @@ const PaymentOption = ({
   const [optionsList, setOptionsList] = useState(options);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cartTotal = useSelector(selectCartTotal);
 
   const handleOnCheck = (id: string) => {
     const newUpdatedOptions = options.map((option) => {
@@ -77,9 +80,8 @@ const PaymentOption = ({
         paymentHandlerMoMo();
         return;
       case '5':
-        alert('Payment success');
         dispatch(setCartItems([]));
-        navigate('/shop');
+        navigate('/checkout/payment/thanks');
         return;
       default:
         return;
@@ -104,12 +106,23 @@ const PaymentOption = ({
             </Option>
           ))}
         </OptionsList>
+        <VoucherContainer>
+          <div>
+            <p>Voucher</p>
+            <p>view available voucher</p>
+          </div>
+          <div>
+            <input placeholder='Enter your voucher code here' type="text" name="" id="" />
+            <div></div>
+            <Button>Apply</Button>
+          </div>
+        </VoucherContainer>
         <PaymentOptionFooter>
           <OrderSummary>
             <p className="summary">Order summary:</p>
             <div className="total">
               <p>Subtotal (x items)</p>
-              <p>Total: xxx.xxx.xxx VND</p>
+              <p>Total: {cartTotal} VND</p>
             </div>
             <div className="shipping">
               <p>Shipping fees:</p>

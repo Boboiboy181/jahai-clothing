@@ -40,7 +40,7 @@ export const PaymentOptionFooter = styled.div`
   flex-direction: column;
 
   button {
-    margin-top: 10px; 
+    margin-top: 10px;
     width: 100%;
   }
 
@@ -100,6 +100,65 @@ export const OptionsList = styled.div`
 
     div:last-child {
       margin: unset;
+    }
+  }
+`;
+
+export const VoucherContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-top: 1px solid black;
+
+  div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    p:first-child {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    p:last-child {
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+    gap: 5px;
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      button {
+        width: 100% !important;
+        min-width: unset;
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid black;
+      flex-basis: 80%;
+    }
+
+    button {
+      width: 20%;
+      min-width: unset;
     }
   }
 `;

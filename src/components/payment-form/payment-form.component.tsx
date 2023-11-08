@@ -90,15 +90,20 @@ const PaymentForm = ({
       alert(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        alert('Payment success');
         dispatch(setCartItems([]));
-        navigate('/shop');
+        navigate('/checkout/payment/thanks');
       }
     }
   };
 
   return (
-    <Modal isLoading={isProcessingPayment} handleConfirm={paymentHandler} modalTitle='Pay with card' isOpen={isOpen} handleOpen={handleOpen}>
+    <Modal
+      isLoading={isProcessingPayment}
+      handleConfirm={paymentHandler}
+      modalTitle="Pay with card"
+      isOpen={isOpen}
+      handleOpen={handleOpen}
+    >
       <PaymentFormContainer>
         <FormContainer>
           {currentUser ? (

@@ -38,7 +38,7 @@ const Payment = () => {
 
   const handleOpenPayWithCard = () => {
     setIsPayWithCardOpen(!isPayWithCardOpen);
-  }
+  };
 
   const handleOpenAddress = () => {
     setIsAddressOpen(!isAddressOpen);
@@ -61,7 +61,9 @@ const Payment = () => {
         <PaymentInfo>
           <PaymentAddress>
             <h3>Address</h3>
-            <p className="name">Tên người gửi: {currentUser?.displayName} - SĐT: xxxx.xxxx</p>
+            <p className="name">
+              Tên người gửi: {currentUser?.displayName} - SĐT: xxxx.xxxx
+            </p>
             <p className="address">
               Số nhà, tên đường, phường, quận, huyện/ thành phố, tỉnh
             </p>
@@ -96,10 +98,14 @@ const Payment = () => {
             </OptionsContainer>
           </DeliveryContainer>
         </PaymentInfo>
-        <PaymentOption handlePayWithCardOpen={setIsPayWithCardOpen}/>
+        <PaymentOption handlePayWithCardOpen={setIsPayWithCardOpen} />
       </PaymentContainer>
       {isAddressOpen && (
-        <Modal modalTitle='Change address' isOpen={isAddressOpen} handleOpen={handleOpenAddress}>
+        <Modal
+          modalTitle="Change address"
+          isOpen={isAddressOpen}
+          handleOpen={handleOpenAddress}
+        >
           <FormInput label="Full name" />
           <FormInput label="Phone number" />
           <FormInput label="Address" />
@@ -118,7 +124,12 @@ const Payment = () => {
           <Line></Line>
         </Modal>
       )}
-      {isPayWithCardOpen && <PaymentForm isOpen={isPayWithCardOpen} handleOpen={handleOpenPayWithCard}/>}
+      {isPayWithCardOpen && (
+        <PaymentForm
+          isOpen={isPayWithCardOpen}
+          handleOpen={handleOpenPayWithCard}
+        />
+      )}
     </Fragment>
   );
 };

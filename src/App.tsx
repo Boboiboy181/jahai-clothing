@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { checkUserSession } from './store/user/user.action';
 import Spinner from './components/spinner/spinner.component';
 import { GlobalStyle } from './global.styles';
+import ThankYou from './routes/thankyou/thankyou.component';
 
 const Navigation = lazy(
   () => import('./routes/navigation/navigation.component'),
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="auth" element={<Authentication />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="checkout/payment" element={<Payment />} />
+          <Route path="checkout/payment/thanks" element={<ThankYou />} />
         </Route>
       </Routes>
     </Suspense>

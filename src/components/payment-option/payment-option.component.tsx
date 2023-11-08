@@ -70,11 +70,22 @@ const PaymentOption = ({
     window.location.href = result.response.shortLink;
   };
 
+  const paymentHandlerZaloPay = async () => {
+    const result = await fetch('/.netlify/functions/zalo-payment').then(
+      (res) => res.json(),
+    );
+
+    console.log(result);
+  };
+
   const isID = () => {
     const id = optionsList.find((option) => option.isChecked === true)?.id;
     switch (id) {
       case '1':
         handlePayWithCardOpen(true);
+        return;
+      case '3':
+        paymentHandlerZaloPay();
         return;
       case '4':
         paymentHandlerMoMo();
@@ -112,7 +123,12 @@ const PaymentOption = ({
             <p>view available voucher</p>
           </div>
           <div>
-            <input placeholder='Enter your voucher code here' type="text" name="" id="" />
+            <input
+              placeholder="Enter your voucher code here"
+              type="text"
+              name=""
+              id=""
+            />
             <div></div>
             <Button>Apply</Button>
           </div>

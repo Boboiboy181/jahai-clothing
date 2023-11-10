@@ -65,17 +65,28 @@ const PaymentOption = ({
     const result = await fetch('/.netlify/functions/momo-payment').then((res) =>
       res.json(),
     );
-
     dispatch(setCartItems([]));
     window.location.href = result.response.shortLink;
   };
 
   const paymentHandlerZaloPay = async () => {
-    const result = await fetch('/.netlify/functions/zalo-payment').then(
-      (res) => res.json(),
-    );
+    const result = await fetch('/.netlify/functions/zalo-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: cartTotal * 1000,
+        orderID: Math.floor(100000 + Math.random() * 900000),
+      }),
+    }).then((res) => res.json());
+    dispatch(setCartItems([]));
+    window.location.href = result.response.order_url;
 
-    console.log(result);
+    // Then, after a delay or based on an event, redirect to another URL
+    setTimeout(() => {
+      window.location.replace('https://regal-banoffee-49bcae.netlify.app/');
+    }, 5000);
   };
 
   const isID = () => {

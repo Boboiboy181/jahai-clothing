@@ -2,32 +2,42 @@ require('dotenv').config();
 const crypto = require('crypto');
 const querystring = require('querystring');
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
+  const { amount } = JSON.parse(event.body);
+
   const createTransId = () => {
     const currentTime = new Date();
     currentTime.setHours(currentTime.getHours() + 7);
-    const formattedDate = `${(currentTime.getYear() % 100)
+    const formattedDate = `${
+      currentTime.getFullYear() % (100).toString().padStart(2, '0')
+    }${(currentTime.getMonth() + 1).toString().padStart(2, '0')}${currentTime
+      .getDate()
       .toString()
-      .padStart(2, '0')}${(currentTime.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}${currentTime.getDate().toString().padStart(2, '0')}`;
-    const orderCode = '007242';
+      .padStart(2, '0')}`;
+    const orderCode = Math.floor(100000 + Math.random() * 900000);
     return `${formattedDate}_${orderCode}`;
   };
 
-  const items = [{}];
+  const items = [
+    {
+      itemid: 'vmh',
+      itemname: 'vu minh hoang',
+      itemprice: 198400,
+      itemquantity: 1,
+    },
+  ];
 
-  const app_id = 2553;
-  const app_time = Date.now();
-  const app_trans_id = '231108_007242';
-  const amount = 50000;
+  const app_id = 2554;
+  const app_trans_id = createTransId();
   const item = JSON.stringify(items);
+  const app_time = Date.now();
   const app_user = 'user123';
-  const embed_data = '';
-  const description = `Jahai - Payment for the order #${app_trans_id}`;
+  const embed_data = JSON.stringify({
+    promotioninfo: '',
+    merchantinfo: 'embeddata123',
+  });
+  const description = `Demo - Thanh toan don hang #${app_trans_id}`;
   const bank_code = '';
-  // const redirecturl = 'https://regal-banoffee-49bcae.netlify.app/';
-  const key1 = process.env.ZLP_MERCHANT_KEY1;
 
   const rawSignature =
     app_id +
@@ -44,58 +54,100 @@ exports.handler = async (event, context) => {
     '|' +
     item;
 
-  const mac = crypto
-    .createHmac('sha256', key1)
-    .update(rawSignature)
-    .digest('hex');
+  const hmac = crypto.createHmac('sha256', 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn');
+  hmac.update(rawSignature);
+  const mac = hmac.digest('hex');
 
   const requestBody = querystring.stringify({
-    app_id: app_id,
+    app_id: 2554,
     app_trans_id: app_trans_id,
     app_user: app_user,
     app_time: app_time,
     item: item,
     embed_data: embed_data,
-    amount: amount,
     description: description,
+    amount: amount,
     bank_code: bank_code,
-    mac: '033e189d3ec03f15440aa7c62a073289818ab8b2ef7e5f6417e34e014abcfed4',
-    key1: 'PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL',
+    mac: mac,
+    redirect_url: 'https://www.google.com',
   });
 
   const https = require('https');
   const options = {
     hostname: 'sb-openapi.zalopay.vn',
     path: '/v2/create',
-    port: 443,
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
   };
 
-  const req = https.request(options, (res) => {
-    console.log(`Status: ${res.statusCode}`);
-    console.log(`Headers: ${JSON.stringify(res.headers)}`);
-    res.setEncoding('utf8');
-    res.on('data', (body) => {
-      console.log('Body: ');
-      console.log(body);
+  function makeMomoApiRequest() {
+    return new Promise((resolve, reject) => {
+      const req = https.request(options, (res) => {
+        let responseBody = '';
+
+        res.on('data', (chunk) => {
+          responseBody += chunk;
+        });
+
+        res.on('end', () => {
+          console.log('No more data in response.');
+
+          try {
+            const responseObj = JSON.parse(responseBody);
+            console.log(responseObj);
+
+            const responseData = {
+              statusCode: 200,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ response: responseObj }),
+            };
+
+            console.log('--------------------RESPONSE----------------');
+
+            resolve(responseData);
+          } catch (error) {
+            console.error('Error parsing Momo API response:', error);
+            const errorResponse = {
+              statusCode: 500,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                error: 'Error parsing Momo API response',
+              }),
+            };
+            reject(errorResponse);
+          }
+        });
+      });
+
+      req.on('error', (e) => {
+        console.log(`problem with request: ${e.message}`);
+
+        const errorResponse = {
+          statusCode: 500,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ error: 'Momo API request failed' }),
+        };
+        reject(errorResponse);
+      });
+
+      console.log('Sending....');
+      req.write(requestBody);
+      req.end();
     });
-    res.on('end', () => {
-      console.log('No more data in response.');
-    });
-  });
+  }
 
-  req.on('error', (e) => {
-    console.error(`Request error: ${e.message}`);
-  });
-
-  req.write(requestBody);
-
-  req.end();
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: 'Hello World' }),
-  };
+  try {
+    const response = await makeMomoApiRequest();
+    return response;
+  } catch (error) {
+    return error;
+  }
 };

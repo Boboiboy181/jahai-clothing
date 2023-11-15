@@ -82,11 +82,6 @@ const PaymentOption = ({
     }).then((res) => res.json());
     dispatch(setCartItems([]));
     window.location.href = result.response.order_url;
-
-    // Then, after a delay or based on an event, redirect to another URL
-    setTimeout(() => {
-      window.location.replace('https://regal-banoffee-49bcae.netlify.app/');
-    }, 5000);
   };
 
   const isID = () => {

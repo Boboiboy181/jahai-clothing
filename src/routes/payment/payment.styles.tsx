@@ -6,7 +6,7 @@ export const PaymentContainer = styled.div`
   justify-content: center;
   flex-direction: row;
   gap: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 
   @media screen and (max-width: 800px) {
     flex-direction: column;

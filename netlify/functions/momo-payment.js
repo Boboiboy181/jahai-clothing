@@ -2,7 +2,8 @@ exports.handler = async (event, context) => {
   const accessKey = 'F8BBA842ECF85';
   const secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
   const partnerCode = 'MOMO';
-  const redirectUrl = 'https://regal-banoffee-49bcae.netlify.app/';
+  const redirectUrl =
+    'https://regal-banoffee-49bcae.netlify.app/checkout/payment/thanks';
   const ipnUrl =
     'https://regal-banoffee-49bcae.netlify.app/checkout/payment/thanks';
   const requestType = 'payWithMethod';

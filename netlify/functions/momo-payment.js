@@ -16,6 +16,8 @@ exports.handler = async (event, context) => {
   const autoCapture = true;
   const lang = 'vi';
 
+  console.log('hello');
+
   const rawSignature =
     'accessKey=' +
     accessKey +

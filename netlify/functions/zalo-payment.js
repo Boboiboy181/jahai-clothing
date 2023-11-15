@@ -69,7 +69,6 @@ exports.handler = async (event) => {
     amount: amount,
     bank_code: bank_code,
     mac: mac,
-    redirect_url: 'https://www.google.com',
   });
 
   const https = require('https');

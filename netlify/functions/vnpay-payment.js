@@ -1,5 +1,4 @@
 require('dotenv').config();
-const moment = require('moment');
 
 function sortObject(obj) {
   let sorted = {};
@@ -23,8 +22,8 @@ exports.handler = async (event) => {
   let vnpUrl = process.env.VNPAY_URL;
   const returnUrl = process.env.VNPAY_RETURN_URL;
   const date = new Date();
-  const createDate = moment(date).format('YYYYMMDDHHmmss');
-  const orderId = moment(date).format('DDHHmmss');
+  // const createDate = moment(date).format('YYYYMMDDHHmmss');
+  // const orderId = moment(date).format('DDHHmmss');
   const amount = 100;
   const bankCode = '';
   const orderInfo = 'Thanh toan don hang';
@@ -38,13 +37,13 @@ exports.handler = async (event) => {
   vnp_Params['vnp_TmnCode'] = tmnCode;
   vnp_Params['vnp_Locale'] = locale;
   vnp_Params['vnp_CurrCode'] = currCode;
-  vnp_Params['vnp_TxnRef'] = orderId;
+  // vnp_Params['vnp_TxnRef'] = orderId;
   vnp_Params['vnp_OrderInfo'] = orderInfo;
   vnp_Params['vnp_OrderType'] = orderType;
   vnp_Params['vnp_Amount'] = amount * 100;
   vnp_Params['vnp_ReturnUrl'] = returnUrl;
   vnp_Params['vnp_IpAddr'] = '';
-  vnp_Params['vnp_CreateDate'] = createDate;
+  // vnp_Params['vnp_CreateDate'] = createDate;
   if (bankCode !== '') {
     vnp_Params['vnp_BankCode'] = bankCode;
   }

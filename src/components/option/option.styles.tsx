@@ -13,10 +13,17 @@ export const OptionContainer = styled.div<OptionProps>`
     rgb(199, 213, 234, 0.5)
   );
   padding: 14px 14px 11px 14px;
+  min-height: 70px;
 
   p {
+    font-size: 20px;
     margin: unset;
-    font-weight: 300;
+    font-weight: 500;
+  }
+
+  img {
+    width: 80%;
+    object-fit: contain;
   }
 `;
 

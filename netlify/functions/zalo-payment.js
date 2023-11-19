@@ -81,7 +81,7 @@ exports.handler = async (event) => {
     },
   };
 
-  function makeMomoApiRequest() {
+  function makeZaloPayApiRequest() {
     return new Promise((resolve, reject) => {
       const req = https.request(options, (res) => {
         let responseBody = '';
@@ -144,7 +144,7 @@ exports.handler = async (event) => {
   }
 
   try {
-    const response = await makeMomoApiRequest();
+    const response = await makeZaloPayApiRequest();
     return response;
   } catch (error) {
     return error;

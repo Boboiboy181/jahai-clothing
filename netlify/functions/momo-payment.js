@@ -1,4 +1,6 @@
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
+  const { amount } = JSON.parse(event.body);
+
   const accessKey = 'F8BBA842ECF85';
   const secretKey = 'K951B6PE1waDMi640xX08PD3vg6EkVlz';
   const partnerCode = 'MOMO';
@@ -7,7 +9,6 @@ exports.handler = async (event, context) => {
   const ipnUrl =
     'https://regal-banoffee-49bcae.netlify.app/checkout/payment/thanks';
   const requestType = 'payWithMethod';
-  const amount = '10000';
   const orderId = partnerCode + new Date().getTime();
   const requestId = orderId;
   const orderInfo = `Jahai Clothing - Payment for the order #${orderId}`;
@@ -15,8 +16,6 @@ exports.handler = async (event, context) => {
   const orderGroupId = '';
   const autoCapture = true;
   const lang = 'vi';
-
-  console.log('hello');
 
   const rawSignature =
     'accessKey=' +

@@ -78,9 +78,7 @@ const PaymentOption = ({
         orderID: Math.floor(100000 + Math.random() * 900000),
       }),
     }).then((res) => res.json());
-
-    console.log(result);
-
+    
     if (result.response.resultCode !== 0) {
       alert('Payment Failed');
       return;
@@ -102,6 +100,7 @@ const PaymentOption = ({
       }),
     }).then((res) => res.json());
     dispatch(setCartItems([]));
+    window.location.href = result.response.order_url;
   };
 
   const paymentVNPAYhandler = async () => {
